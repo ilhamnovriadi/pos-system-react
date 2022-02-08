@@ -1,0 +1,40 @@
+@import "../../../var";
+
+.footer {
+    &__container {
+        background-color: $primary;
+        height: 80px;
+        border-radius: .55rem .55rem 0 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 600;
+        font-size: 15px;
+        color: white;
+        width: 100%;
+        box-sizing: border-box;
+        
+        &--sticky {
+            z-index: 802;
+            width: 1080px;
+            position: fixed;
+            bottom: 0;
+            margin-top: 100px;
+            background-color: $primary;
+            height: 80px;
+            border-radius: .55rem .55rem 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            font-size: 15px;
+            color: white;
+            box-sizing: border-box;
+        }
+    }
+
+    &__icon {
+        width: 20px;
+        height: 20px;
+    }
+}

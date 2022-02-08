@@ -1,0 +1,151 @@
+@import "../../../var";
+
+h6 {
+    color: azure;
+}
+
+h2 {
+    font-weight: 700;
+    color: azure;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #00aeef;
+    padding-inline: 20px;
+    height: 70px;
+    align-items: center;
+    border-radius: 0 0 .55rem .55rem;
+}
+
+.button-menu {
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 10px;
+    height: 30px;
+    margin-top: 2px;
+    padding-inline: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 50px;
+    transition: 120ms linear;
+
+    &__icon {
+        margin-left: 6px;
+    }
+
+    &:hover {
+        background-color: #0189bb;
+    }
+}
+
+.menu-kategori {
+    background-color: #fff;
+    position: absolute;
+    margin-left: 10px;
+    width: 200px;
+    box-shadow: 5px 5px 5px 5px #42424210;
+    border-radius: 5px;
+    padding-block: 10px;
+    z-index: 801;
+
+    .menu-item {
+        cursor: pointer;
+        color: #424242;
+        margin-inline: 10px;
+        padding-inline: 10px;
+        padding-block: 10px;
+        font-size: 15px;
+        font-weight: 500;
+
+        &--active {
+            background-color: $primary;
+            border-radius: 5px;
+            color: white;
+            z-index: inherit;
+        }
+
+        &:hover {
+            background-color: $secondary;
+            border-radius: 5px;
+            color: white;
+        }
+    }
+}
+
+.cart-button {
+    display: flex;
+    flex-direction: row;
+    background-color: #00a7e4;
+    border-radius: 50px;
+    padding-inline: 15px;
+    padding-block: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-inline: 4px;
+    transition: 120ms linear;
+    position: relative;
+
+    p {
+        margin-left: 5px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    &__ballon {
+        width: 25px;
+        height: 25px;
+        box-sizing: border-box;
+        border-radius: 50px;
+        background-color: $third;
+        position: absolute;
+        right: -7px;
+        top: -7px;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        p {
+            margin: 0;
+            color: white;
+            font-weight: 700;
+            font-size: 12px;
+        }
+    }
+
+    &:hover {
+        background-color: #0189bb;
+    }
+}
+
+.form-pencarian {
+    margin-inline: 10px;
+    position: relative;
+
+    &-icon {
+        position: absolute;
+        right: 5px;
+        top: 8px;
+        width: 30px;
+        height: 30px;
+    }
+
+    input {
+        padding-inline: 15px 40px;
+        padding-block: 10px;
+        background-color: #fff;
+        border-radius: 50px;
+        font-weight: 500;
+        font-family: 'Poppins';
+        border: 0;
+        outline: none;
+        font-size: 12px;
+        width: 200px;
+    }
+}

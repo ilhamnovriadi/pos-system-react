@@ -1,0 +1,53 @@
+@import "../../../var";
+
+.button {
+    width: 300px;
+    box-sizing: border-box;
+    height: 45px;
+
+
+
+    &__container {
+        background-color: #00aeef;
+        border: 0;
+        outline: none;
+        width: 300px;
+        box-sizing: border-box;
+        height: 45px;
+        border-radius: 50px;
+        font-family: "Poppins";
+        font-size: 15px;
+        font-weight: 500;
+        color: white;
+
+        &:hover {
+            background-color: #0189bb;
+            box-shadow: 10px 10px 15px #eaeaea;
+            cursor: pointer;
+        }
+
+        &__disabled {
+            background-color: #eaeaea;
+
+            &:hover {
+                background-color: #eaeaea;
+                box-shadow: none;
+                cursor:not-allowed;
+            }
+        }
+
+        &__secondary {
+            background-color: $third;
+            color: white;
+
+            &:hover {
+                background-color: $four;
+                box-shadow: 10px 10px 15px #eaeaea;
+                cursor: pointer;
+            }
+
+        }
+
+
+    }
+}

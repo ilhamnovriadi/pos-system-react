@@ -1,0 +1,112 @@
+.product {
+    background-color: aliceblue;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 100px;
+    border-radius: .55rem;
+    display: flex;
+    padding-block: 20px;
+    padding-inline: 20px;
+    box-sizing: border-box;
+
+    small {
+        color: #424242;
+        font-weight: 500;
+        font-size: 10px;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: .35rem .35rem 0 0;
+    }
+
+    &__title {
+        font-weight: 600;
+        font-size: 25px;
+        color: #00aeef;
+        margin-bottom: 5px;
+    }
+
+    &__body {
+        padding-inline: 30px;
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    &__desc {
+        font-size: 14px;
+        font-weight: 400;
+        color: #424242;
+        margin-bottom: 20px;
+    }
+
+    &__category {
+        background-color: #00aeef;
+        padding-inline: 9px;
+        padding-block: 2px;
+        display: flex;
+        font-size: 12px;
+        font-weight: 500;
+        color: white;
+        border-radius: 2px;
+        margin-bottom: 4px;
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    &__icon {
+        padding-top: 4px;
+        padding-right: 4px;
+    }
+
+    &__tags {
+        background-color: #ff5110;
+        padding-inline: 9px;
+        padding-block: 2px;
+        font-size: 12px;
+        font-weight: 500;
+        color: white;
+        border-radius: 2px;
+        flex-direction: row;
+        display: flex;
+        cursor: pointer;
+        margin-bottom: 10px;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    &__button {
+        margin-top: 20px;
+        background-color: #00aeef;
+        color: #fff;
+        font-weight: 600;
+        display: flex;
+        flex-direction: row;
+        padding-block: 10px;
+        padding-inline: 10px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        font-size: 13px;
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.02);
+            background-color: #0189bb;
+
+        }
+
+        p {
+            padding-left: 5px;
+        }
+    }
+}
