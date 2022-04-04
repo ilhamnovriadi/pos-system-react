@@ -1,4 +1,4 @@
-export function formatUang(num) {
+export function formatCurrency(num) {
   var p = num.toFixed().split(".");
   return (
     "Rp" +

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Card from "../../components/Card";
 import Loader from "../../components/Loader";
-import Navigate from "../../components/Navigate";
 import Tags from "../../components/Tags";
 import { fetchProduct } from "../../redux/actions/product";
 import "./index.scss";
@@ -51,7 +50,7 @@ const Home = ({ tags, search, category }) => {
         )
       );
     }
-  }, [search, tagsSelect, category]);
+  }, [search, tagsSelect, category, dispatch]);
 
   return (
     <Loader isActive={isLoading} text={"Tunggu yah"}>
@@ -75,9 +74,6 @@ const Home = ({ tags, search, category }) => {
             return <Card key={i} data={item} />;
           })}
         </div>
-        {/* <div className="home__navigate">
-          <Navigate />
-        </div> */}
       </div>
     </Loader>
   );

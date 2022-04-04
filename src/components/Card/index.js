@@ -3,23 +3,19 @@ import { FaShoppingCart, FaTags } from "react-icons/fa";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router";
 import { add_cart, add_cart_inc, updateCart } from "../../redux/actions/cart";
-import { formatUang } from "../../utils";
+import { formatCurrency } from "../../utils";
 import "./index.scss";
 import config from "../../config";
 const { imageUrl } = config;
 
 const Card = ({ data, cart, addCart, addCartInc, updateCart, token }) => {
-  const history = useNavigate();
   return (
-    <div
-      className="card"
-      // onClick={() => history(`/product/${data?._id}`)}
-    >
+    <div className="card">
       <div className="card__header">
         <img
           alt="product-imagecard"
           onError={({ currentTarget }) => {
-            currentTarget.onerror = null; // prevents looping
+            currentTarget.onerror = null;
             currentTarget.src = require("../../assets/dummy-image.jpg");
           }}
           className="card__image"
@@ -28,7 +24,7 @@ const Card = ({ data, cart, addCart, addCartInc, updateCart, token }) => {
       </div>
       <div className="card__body">
         <div className="card__title">{data?.name}</div>
-        <div className="card__price">{formatUang(data?.price)}</div>
+        <div className="card__price">{formatCurrency(data?.price)}</div>
         <div className="card__desc">
           <p>{data?.description}</p>
         </div>

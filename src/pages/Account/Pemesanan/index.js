@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
-import { formatUang } from "../../../utils";
+import { formatCurrency } from "../../../utils";
+import { ExpandItem } from "./component/ExpandItem";
+import { List } from "./component/List";
 
 const Pemesanan = ({ data }) => {
-  const history = useNavigate();
-  const PESANAN = [
-    { id: 1, status: "Waiting Payment" },
-    { id: 2, status: "Process" },
-  ];
   const [expand, setExpand] = useState("");
   return (
     <div className="pemesanan">
@@ -40,24 +36,17 @@ const Pemesanan = ({ data }) => {
                   expand === item.id ? "pemesanan__card--active" : ""
                 }`}
               >
-                <div className="pemesanan__col">
-                  <p className="pemesanan__label">Order ID</p>
-                  <p className="pemesanan__desc">#{item.order_numbers}</p>
-                </div>
-                <div className="pemesanan__col">
-                  <p className="pemesanan__label">Total</p>
-                  <p className="pemesanan__desc">{formatUang(total)}</p>
-                </div>
-                <div className="pemesanan__col">
-                  <p className="pemesanan__label">Status</p>
-                  <p className="pemesanan__desc">
-                    {item.status === "waiting_payment"
+                <List label="Order ID" value={`#${item.order_numbers}`} />
+                <List label="Total" value={formatCurrency(total)} />
+                <List
+                  label="Status"
+                  value={
+                    item.status === "waiting_payment"
                       ? "Waiting Payment"
-                      : "Paid"}
-                  </p>
-                </div>
-                <div className="pemesanan__col">
-                  <p className="pemesanan__label">Invoice</p>
+                      : "Paid"
+                  }
+                />
+                <List label="Invoice">
                   <button
                     onClick={() =>
                       window.open(`/invoice/${item.order_numbers}`, "_blank")
@@ -66,41 +55,10 @@ const Pemesanan = ({ data }) => {
                   >
                     Invoice
                   </button>
-                </div>
+                </List>
               </div>
               <div className="pemesanan__expand__dash"></div>
-              {expand === item.id ? (
-                <div className="pemesanan__expand">
-                  <div className="flex-row">
-                    <div className="pemesanan__expand__col">
-                      <p className="pemesanan__label">Barang</p>
-                    </div>
-                    <div className="pemesanan__expand__col">
-                      <p className="pemesanan__label">Jumlah</p>
-                    </div>
-                    <div className="pemesanan__expand__col">
-                      <p className="pemesanan__label">Total Harga</p>
-                    </div>
-                  </div>
-                  {item.order_items.map((c, i) => {
-                    return (
-                      <div key={i} className="flex-row">
-                        <div className="pemesanan__expand__col">
-                          <p className="pemesanan__expand__desc">{c.name}</p>
-                        </div>
-                        <div className="pemesanan__expand__col">
-                          <p className="pemesanan__expand__desc">{c.qty}</p>
-                        </div>
-                        <div className="pemesanan__expand__col">
-                          <p className="pemesanan__expand__desc">
-                            {formatUang(c.price)}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : null}
+              {expand === item.id ? <ExpandItem item={item} /> : null}
             </div>
           );
         })}

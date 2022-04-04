@@ -5,12 +5,15 @@ import { useNavigate } from "react-router";
 import Button from "../../components/Button";
 import Loader from "../../components/Loader";
 import { createOrder } from "../../redux/actions/order";
-import { formatUang } from "../../utils";
+import { formatCurrency } from "../../utils";
+import { AddressOption } from "./components/AddressOption";
+import { CheckoutLogin } from "./components/CheckoutLogin";
+import { EmptyCheckout } from "./components/EmptyCheckout";
+import { List } from "./components/List";
 import "./index.scss";
 
 const Checkout = ({ cart, address, token, create_Order }) => {
   const history = useNavigate();
-  const [dataProduk, setDataProduk] = useState([]);
   const [showAlamat, setShowAlamat] = useState(false);
   const [alamat, setAlamat] = useState("");
   const [idAlamat, setIdAlamat] = useState("");
@@ -29,69 +32,33 @@ const Checkout = ({ cart, address, token, create_Order }) => {
     <Loader isActive={false} text={"Tunggu yah"}>
       <div className="checkout">
         {!true ? (
-          <div className="center">
-            <div className="checkout__title">
-              <h1>Checkout</h1>
-              <p>Silahkan Login untuk membuka checkout</p>
-            </div>
-            <Button onClick={() => history("/account")} label="Login" />
-          </div>
+          <CheckoutLogin onClick={() => history("/account")} />
         ) : cart.data.length > 0 ? (
           <div className="checkout__title">
             <h1>Checkout</h1>
             <div className="checkout__list"></div>
-            <div className="checkout__total">
-              <p>Alamat Pengiriman</p>
+            <List label="Alamat Pengiriman">
               <button onClick={toggle} className="checkout__buttonalamat">
                 <FaMapMarkerAlt size={18} color="#424242" />
                 <h4>{alamat === "" ? "Pilih Alamat" : alamat}</h4>
               </button>
               {showAlamat ? (
-                <div className="checkout__containeralamat">
-                  {address.map((item, i) => {
-                    return (
-                      <div
-                        onClick={() => {
-                          setAlamat(
-                            item.kota_kecamatan + " - " + item.alamat_lengkap
-                          );
-                          setIdAlamat(item._id);
-                          setShowAlamat(false);
-                        }}
-                        key={i}
-                        className="checkout__listalamat"
-                      >
-                        <p>
-                          {item.kota_kecamatan + " - " + item.alamat_lengkap}
-                        </p>
-                      </div>
-                    );
-                  })}
-                  <div
-                    onClick={() => {
-                      history("/account#tambah-alamat");
-                    }}
-                    className="checkout__listalamat"
-                  >
-                    <p> + Tambah Alamat</p>
-                  </div>
-                </div>
+                <AddressOption
+                  address={address}
+                  setAlamat={setAlamat}
+                  setIdAlamat={setIdAlamat}
+                  setShowAlamat={setShowAlamat}
+                />
               ) : null}
-            </div>
-            <div className="checkout__total">
-              <p>Sub Total</p>
-              <h3>{formatUang(hitung)}</h3>
-            </div>
-            <div className="checkout__total">
-              <p>Ongkir</p>
-              <h3>{formatUang(ongkir)}</h3>
-            </div>
-            <div className="checkout__total">
-              <p>
-                <strong>Total</strong>
-              </p>
-              <h3>{formatUang(hitung + ongkir)}</h3>
-            </div>
+            </List>
+            <List label="Sub Total" value={formatCurrency(hitung)} />
+            <List label="Ongkir" value={formatCurrency(ongkir)} />
+            <List
+              label="Total"
+              strong
+              value={formatCurrency(hitung + ongkir)}
+            />
+
             <div className="checkout__containerbutton">
               <Button
                 secondary="true"
@@ -114,13 +81,7 @@ const Checkout = ({ cart, address, token, create_Order }) => {
             </div>
           </div>
         ) : (
-          <div className="center">
-            <div className="cart__authtitle">
-              <h1>Checkout</h1>
-              <p>Belum tersedia produk</p>
-            </div>
-            <Button onClick={() => history("/")} label="Belanja" />
-          </div>
+          <EmptyCheckout onClick={() => history("/")} />
         )}
       </div>
     </Loader>

@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Breadcrumb from "./components/Breadcrumb";
 import Account from "./pages/Account";
-import Footer from "./components/Footer.js";
+import Footer from "./components/Footer";
 import Product from "./pages/Product";
 import { useEffect, useState } from "react";
 import Checkout from "./pages/Checkout";
@@ -13,9 +13,6 @@ import Invoice from "./pages/Invoice";
 import { connect } from "react-redux";
 import { fetchCategories } from "./redux/actions/categories";
 import { fetchTags } from "./redux/actions/tags";
-import { fetchAddress } from "./redux/actions/address";
-import { fetchCart } from "./redux/actions/cart";
-import { fetchOrder } from "./redux/actions/order";
 const CATEGORY = ["Monitor", "Laptop", "Komputer", "Aksesoris", "Sparepart"];
 
 function App({
@@ -26,23 +23,19 @@ function App({
   order,
   fetch_Categories,
   fetch_Tags,
-  fetch_Address,
-  fetch_Cart,
-  fetch_Order,
 }) {
   const location = useLocation();
   const [categorySelect, setCategorySelect] = useState("");
   const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
-    fetch_Categories();
-    fetch_Tags();
-    if (users.token !== "") {
-      fetch_Address(users.token);
-      fetch_Cart(users.token);
-      fetch_Order(users.token);
+    if (data?.categories.length === 0) {
+      fetch_Categories();
     }
-  }, [location]);
+    if (data?.tags.length === 0) {
+      fetch_Tags();
+    }
+  }, []);
 
   return (
     <div className="App">
@@ -95,13 +88,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // dispatching plain actions
-
-    fetch_Cart: (token) => dispatch(fetchCart(token)),
     fetch_Tags: () => dispatch(fetchTags()),
     fetch_Categories: () => dispatch(fetchCategories()),
-    fetch_Address: (token) => dispatch(fetchAddress(token)),
-    fetch_Order: (token) => dispatch(fetchOrder(token)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(App);
